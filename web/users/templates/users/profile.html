@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+<!-- when import crispy_forms, need to add CRISPY_TEMPLATE_PACK = 'bootstrap4' at the bottom of the settings.py and also add 'crispy_forms' into INSTALLED_APPS -->
+{% load crispy_forms_tags %} <!-- import crispy_forms tags -->
+{% block content %}
+    <div class="content-section">
+      <div class="media">
+        <!-- for user upload images, we need add a static #1 in web/urls.py -->
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+          <!-- for the infor shows in curly brackets, all get from database. means user's name and user's email. -->
+          <h2 class="account-heading">{{ user.username }}</h2>
+          <p class="text-secondary">{{ user.email }}</p>
+        </div>
+      </div>
+      <!-- enctype="multipart/form-data, if without this, image won't save into background -->
+      <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Profile Info</legend>
+              <!-- {{ form.as_p }} means render the form into <p>, but as long as we have crispy_forms then we don't need .as_p anymore, we just put {{ form|crispy }}. -->
+              {{ username_email_form|crispy }}
+              {{ image_form|crispy }}
+          </fieldset>
+          <div class="form-group">
+                  <!-- make a submit button (btn means button) say Update  -->
+                  <button class="btn btn-outline-info" type="submit">Update</button>
+          </div>
+      </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+<!-- when import crispy_forms, need to add CRISPY_TEMPLATE_PACK = 'bootstrap4' at the bottom of the settings.py and also add 'crispy_forms' into INSTALLED_APPS >
+{% load crispy_forms_tags %} <!-- import crispy_forms tags -->
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">Log In</legend>
+                    <!-- {{ form.as_p }} means render the form into <p>, but as long as we have crispy_forms then we don't need .as_p anymore, we just put {{ form|crispy }}. -->
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                        <!-- make a submit button (btn means button) say Sign up  -->
+                        <button class="btn btn-outline-info" type="submit">Login</button>
+                        <small class="text-muted ml-2">
+                            <a href="{% url 'password_reset' %}">Forget Password?</a>
+                        </small>
+                </div>
+            </form>
+            <div class="border-top pt-3">
+                <small class="text-muted"><!-- make the sign in block little bit small  -->
+                    Need An Account? <a class="ml-2" href="{% url 'register' %}">Sign Up Now</a>
+                 </small>
+            </div>
+    </div>
+
+{% endblock %}

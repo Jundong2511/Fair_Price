@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <!-- for this log out page, we wanna user to see the info that shows them been logout, and give them option to log in again.-->
+    <h2>You have been logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted"><!-- "text-muted"make the sign in block little bit small  -->
+            <a href="{% url 'login' %}">Log In Again</a>
+         </small>
+    </div>
+
+
+{% endblock %}

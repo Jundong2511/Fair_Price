@@ -13,6 +13,7 @@ class Profile(models.Model):
     # django wil automatically create a floder which name is "profile_pics" for upload_to.
     # also can be added into other folder, see settings.py MEDIA_ROOT.
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+    
 
     # this function use to printout a username plus 'Profile'
     # e.g. if a user's name is Jun, it'll show 'Jun Profile'.
